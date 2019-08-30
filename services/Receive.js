@@ -2,7 +2,6 @@
 
 const RequestSending = require('./RequestSending.js');
 const requestJson = require('./RequestJson.js');
-const database = require('./Database.js');
 const User = require('./User.js');
 
 module.exports = class Receive {
@@ -57,20 +56,10 @@ module.exports = class Receive {
       const productName = postback.payload.substring(20);
       console.log('INFO:', this.psid + ' enquiring about ' + productName);
       this.sendMessage(this.learnMoreResponse(this.psid, productName, false));
-    } else if (payload.includes('purchase_info_')) {
-      const infoType = payload.substring(14, 16);
-      const product = payload.substring(17);
-      const response = [];
-      database.getInfo(product, infoType, (info) => {
-        for (const infoObj of info) {
-          response.push(requestJson.makeTextRequest(this.psid, infoObj.text));
-          if (infoObj.url) {
-            response.push(requestJson.makeImageAttachment(this.psid, infoObj.url));
-          }
-        }
-        response.push(this.learnMoreResponse(this.psid, product, true));
-        this.sendMessage(response);
-      });
+    } else if (payload.includes('purchase_yes_')) {
+      const productDescript = postback.payload.substring(13).split('_');
+      console.log(`INFO: Buying package ${productDescript[1]} of ${productDescript[0]}`);
+      this.sendMessage(this.choosePackageForm(productDescript[0], productDescript[1]));
     }
   }
 
@@ -125,7 +114,7 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `https://09269c0c.ngrok.io/product/${productName}/${fullName}`,
+        url: `https://e11aa77b.ngrok.io/product/${productName}/${fullName}`,
         title: 'Order Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
@@ -134,7 +123,18 @@ module.exports = class Receive {
     return requestJson.makeButtons(psid, text, buttons);
   }
 
-  sendInfo () {
-
+  choosePackageForm (product, num) {
+    const text = 'Click here to order!';
+    const fullName = this.user.fullName;
+    const buttons = [
+      {
+        type: 'web_url',
+        url: `https://e11aa77b.ngrok.io/product/${product}/${fullName}/${num}`,
+        title: 'Order Now',
+        webview_height_ratio: 'tall',
+        messenger_extensions: true
+      }
+    ];
+    return requestJson.makeButtons(this.psid, text, buttons);
   }
 };

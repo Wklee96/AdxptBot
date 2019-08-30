@@ -45,7 +45,6 @@ app.post('/webhook', function (req, res) {
     } else {
       const messaging = body.entry[0].messaging[0];
       const senderPsid = messaging.sender.id;
-
       if (messaging.pass_thread_control) {
         const receiveMessage = new Receive(senderPsid, messaging);
         return receiveMessage.sendInfo();

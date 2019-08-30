@@ -11,11 +11,14 @@
                         "subtitle": "",
                         "buttons": [
                             {
-                                "type": "web_url",
-                                "url": "https://09269c0c.ngrok.io/product/turtle",
-                                "title": "Order Now",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": "true"
+                                "type": "postback",
+                                "title": "One Bottle - RM135",
+                                "payload": "purchase_yes_turtle_1"
+                            },                            
+                            {
+                                "type": "postback",
+                                "title": "Two Bottles - RM180",
+                                "payload": "purchase_yes_turtle_2"
                             },
                             {
                                 "type": "postback",

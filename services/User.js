@@ -3,11 +3,11 @@
 module.exports = class User {
   constructor (psid) {
     this.psid = psid;
-    this.firstName = '';
-    this.lastName = '';
-    this.locale = '';
-    this.timezone = '';
-    this.fullName = '';
+    this.firstName = ' ';
+    this.lastName = ' ';
+    this.locale = ' ';
+    this.timezone = ' ';
+    this.fullName = ' ';
     this.gender = 'neutral';
   }
 

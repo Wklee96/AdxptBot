@@ -78,6 +78,7 @@
                                 MessengerExtensions.getContext(325532075064592,
                                     function success(thread_context) {
                                         // success
+                                        console.log(thread_context);
                                         document.getElementById('insertPurchase').action = `/product/turtle/${thread_context.psid}`;
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             MessengerExtensions.requestCloseBrowser(function success() {
@@ -119,20 +120,37 @@
                     </h5>
                     <div class="card-body">
                         <div class="col-sm-10">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="howmany" id="comboOne"
-                                    value="[Turtle Scratch & Swirl Remover] One Bottle - RM135" checked>
-                                <label class="form-check-label" for="howmany">
-                                    [Turtle Scratch & Swirl Remover] One Bottle - RM135
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
-                                    value="[Turtle Scratch & Swirl Remover] Two Bottles - RM180">
-                                <label class="form-check-label" for="howmany">
-                                    [Turtle Scratch & Swirl Remover] Two Bottles - RM180
-                                </label>
-                            </div>
+                            <% if (package === '1') { %>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboOne"
+                                        value="[Turtle Scratch & Swirl Remover] One Bottle - RM135" checked>
+                                    <label class="form-check-label" for="howmany">
+                                        [Turtle Scratch & Swirl Remover] One Bottle - RM135
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] Two Bottles - RM180">
+                                    <label class="form-check-label" for="howmany">
+                                        [Turtle Scratch & Swirl Remover] Two Bottles - RM180
+                                    </label>
+                                </div>
+                            <% } else { %>
+                                <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="howmany" id="comboOne"
+                                            value="[Turtle Scratch & Swirl Remover] One Bottle - RM135">
+                                        <label class="form-check-label" for="howmany">
+                                            [Turtle Scratch & Swirl Remover] One Bottle - RM135
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                            value="[Turtle Scratch & Swirl Remover] Two Bottles - RM180" checked>
+                                        <label class="form-check-label" for="howmany">
+                                            [Turtle Scratch & Swirl Remover] Two Bottles - RM180
+                                        </label>
+                                    </div>
+                            <% } %>
                         </div>
                     </div>
                 </fieldset>

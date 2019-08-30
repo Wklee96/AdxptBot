@@ -5,6 +5,19 @@ var requestSending = require('../services/RequestSending');
 var requestJson = require('../services/RequestJson');
 
 /* GET home page. */
+router.get('/:product/:name/:package', (req, res) => {
+  const referer = req.get('Referer');
+  if (referer) {
+    if (referer.indexOf('www.messenger.com') >= 0) {
+      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+    } else if (referer.indexOf('www.facebook.com') >= 0) {
+      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+    }
+    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: req.package });
+  }
+});
+
+/* GET home page. */
 router.get('/:product/:name', (req, res) => {
   const referer = req.get('Referer');
   if (referer) {
@@ -13,7 +26,7 @@ router.get('/:product/:name', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: `${req.params.name}` });
+    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: '1' });
   }
 });
 
@@ -26,7 +39,7 @@ router.get('/:product', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: '' });
+    res.render(`${req.params.product}`, { name: '', package: '1' });
   }
 });
 
