@@ -1,0 +1,31 @@
+{
+    "message": {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Enter a title to accompany your image",
+                        "image_url": "https://image.ibb.co/bz5t6Q/placeholder.png",
+                        "subtitle": "",
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": "https://f230880f.ngrok.io/product/turtle",
+                                "title": "Yes",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": "true"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Learn More",
+                                "payload": "purchase_learn_more_turtle"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
