@@ -38,7 +38,7 @@ router.post('/:product/:psid', (req, res) => {
       text = 'Thank you so much for shopping with us!! We will confirm the delivery and send you a message in a few days!';
       const payload = {
         template_type: 'receipt',
-        receipient_name: body.name,
+        recipient_name: body.name,
         order_number: result._id,
         currency: 'MYR',
         payment_method: 'Cash on delivery',
@@ -46,7 +46,7 @@ router.post('/:product/:psid', (req, res) => {
         address: {
           street_1: body.inputAddress,
           city: body.inputCity,
-          postal: body.inputZip,
+          postal_code: body.inputZip,
           state: body.inputState,
           country: 'MY'
         },

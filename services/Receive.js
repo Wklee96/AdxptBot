@@ -10,14 +10,12 @@ module.exports = class Receive {
     this.psid = psid;
     this.user = new User();
     RequestSending.getUserProfile(psid, (profile) => {
-      console.log(profile);
       this.user.setProfile(profile);
     });
     this.webhookMessaging = webhookMessaging;
   }
 
   handleMessage () {
-    console.log(this.webhookMessaging);
     try {
       const message = this.webhookMessaging.message;
       const postback = this.webhookMessaging.postback;
@@ -58,7 +56,7 @@ module.exports = class Receive {
     if (payload.includes('purchase_learn_more')) {
       const productName = postback.payload.substring(20);
       console.log('INFO:', this.psid + ' enquiring about ' + productName);
-      this.sendMessage(this.learnMoreResponse(this.psid, productName));
+      this.sendMessage(this.learnMoreResponse(this.psid, productName, false));
     } else if (payload.includes('purchase_info_')) {
       const infoType = payload.substring(14, 16);
       const product = payload.substring(17);
@@ -70,7 +68,7 @@ module.exports = class Receive {
             response.push(requestJson.makeImageAttachment(this.psid, infoObj.url));
           }
         }
-        response.push(this.learnMoreResponse(this.psid, product));
+        response.push(this.learnMoreResponse(this.psid, product, true));
         this.sendMessage(response);
       });
     }
@@ -174,8 +172,11 @@ module.exports = class Receive {
     });
   }
 
-  learnMoreResponse (psid, productName) {
-    const text = 'What information do you want to find out about the product?';
+  learnMoreResponse (psid, productName, evenMore) {
+    let text = 'What information do you want to find out about the product?';
+    if (evenMore) {
+      text = 'Like what you see? Hit Order Now to buy today!';
+    }
     const fullName = this.user.fullName;
     const buttons = [
       {
@@ -190,7 +191,7 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `https://34529e01.ngrok.io/product/${productName}/${fullName}`,
+        url: `https://09269c0c.ngrok.io/product/${productName}/${fullName}`,
         title: 'Order Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true

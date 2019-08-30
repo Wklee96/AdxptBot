@@ -12,7 +12,7 @@
                         "buttons": [
                             {
                                 "type": "web_url",
-                                "url": "https://f230880f.ngrok.io/product/turtle",
+                                "url": "https://09269c0c.ngrok.io/product/turtle",
                                 "title": "Yes",
                                 "webview_height_ratio": "tall",
                                 "messenger_extensions": "true"
