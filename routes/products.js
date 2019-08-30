@@ -38,11 +38,11 @@ router.post('/:product/:psid', (req, res) => {
       text = 'Thank you so much for shopping with us!! We will confirm the delivery and send you a message in a few days!';
       const payload = {
         template_type: 'receipt',
+        sharable: true,
         recipient_name: body.name,
         order_number: result._id,
         currency: 'MYR',
         payment_method: 'Cash on delivery',
-        timestamp: Date.now(),
         address: {
           street_1: body.inputAddress,
           city: body.inputCity,
@@ -51,12 +51,15 @@ router.post('/:product/:psid', (req, res) => {
           country: 'MY'
         },
         summary: {
-          total_cost: 135
+          total_cost: body.howmany.substring(48)
         },
         elements: [
           {
             title: body.howmany,
-            price: 135
+            subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
+                      'Note: ' + body.note,
+            price: body.howmany.substring(48),
+            currency: 'MYR'
           }
         ]
       };
