@@ -41,26 +41,6 @@ module.exports = class Database {
     });
   }
 
-  static getSizeImageUrl (product, cb) {
-    MongoClient.connect(url, function (err, client) {
-      var db = client.db('purchaseOrder');
-      if (err) {
-        console.error('ERROR:', 'Unable to connect to database');
-      } else {
-        var collection = db.collection('products');
-        collection.findOne({ productName: product }, (err, result) => {
-          if (err || !result) {
-            console.error('ERROR:', 'Unable to retrieve data from database');
-          } else {
-            console.log('INFO:', 'Success retrieval of data', result);
-            cb(result.sizeImageUrl);
-          }
-        });
-      }
-      client.close();
-    });
-  }
-
   static getLearnMoreUrls (product, cb) {
     MongoClient.connect(url, function (err, client) {
       var db = client.db('purchaseOrder');
@@ -74,26 +54,6 @@ module.exports = class Database {
           } else {
             console.log('INFO:', 'Success retrieval of data', result);
             cb(result.learnMoreImageUrls);
-          }
-        });
-      }
-      client.close();
-    });
-  }
-
-  static getBuyingType (product, cb) {
-    MongoClient.connect(url, function (err, client) {
-      var db = client.db('purchaseOrder');
-      if (err) {
-        console.error('ERROR:', 'Unable to connect to database');
-      } else {
-        var collection = db.collection('products');
-        collection.findOne({ productName: product }, (err, result) => {
-          if (err || !result) {
-            console.error('ERROR:', 'Unable to retrieve data from database');
-          } else {
-            console.log('INFO:', 'Success retrieval of data', result.buyingType);
-            cb(result.buyingType);
           }
         });
       }

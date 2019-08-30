@@ -2,7 +2,6 @@
 // Imports dependencies
 const request = require('request');
 const config = require('./Config.js');
-const database = require('./Database.js');
 const requestJson = require('./RequestJson.js');
 
 module.exports = class GraphAPI {
@@ -71,27 +70,37 @@ module.exports = class GraphAPI {
     request(reqObj, function (error, response, body) {
       if (error) {
         console.error('ERROR:', 'Unable to get a response from DialogFlow', JSON.stringify(error));
-        callback('Something has gone wrong. Please wait while we handover to our live agents');
+        callback(psid, 'Something has gone wrong. Please wait while we handover to our live agents');
       } else if (body.result.metadata.isFallbackIntent === 'true') {
         console.log('INFO:', 'Fallback intent detected, handover protocol');
-        callback('Something has gone wrong. Please wait while we handover to our live agents');
+        callback(psid, 'Something has gone wrong. Please wait while we handover to our live agents');
       } else {
         console.log('INFO:', 'Bot has replied');
-        var params = body.result.parameters;
-        if (params.comments !== '') {
-          database.insertPurchase(params, psid);
-        }
         const text = body.result.fulfillment.speech;
         var reply = [];
         reply.push(requestJson.makeTextRequest(psid, text));
-        if (text.includes('尺碼')) {
-          database.getSizeImageUrl(params.productName, function (url) {
-            reply.push(requestJson.makeImageAttachment(psid, url));
-            callback(reply);
-          });
-        } else {
-          callback(reply);
-        }
+        callback(psid, reply);
+      }
+    });
+  }
+
+  static handOver (psid) {
+    var requestObject = {
+      uri: `${config.mPlatfom}/me/pass_thread_control`,
+      qs: {
+        access_token: config.pageAccesToken
+      },
+      method: 'POST',
+      json: {
+        recipient: {
+          id: psid
+        },
+        target_app_id: 263902037430900
+      }
+    };
+    request(requestObject, err => {
+      if (err) {
+        console.error('ERROR', 'Unable to send message', err);
       }
     });
   }

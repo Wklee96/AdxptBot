@@ -34,6 +34,7 @@ router.post('/:product/:psid', (req, res) => {
   const body = req.body;
   database.insertPurchase(req.params.product, body, (success, result) => {
     let text = '';
+    const itemDescript = body.howmany.split('-');
     if (success) {
       text = 'Thank you so much for shopping with us!! We will confirm the delivery and send you a message in a few days!';
       const payload = {
@@ -51,14 +52,14 @@ router.post('/:product/:psid', (req, res) => {
           country: 'MY'
         },
         summary: {
-          total_cost: body.howmany.substring(48)
+          total_cost: itemDescript[1].trim().substring(2)
         },
         elements: [
           {
-            title: body.howmany,
+            title: itemDescript[0].trim(),
             subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
                       'Note: ' + body.note,
-            price: body.howmany.substring(48),
+            price: itemDescript[1].trim().substring(2),
             currency: 'MYR'
           }
         ]
