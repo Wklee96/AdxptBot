@@ -27,9 +27,9 @@ module.exports = class Database {
         console.error('ERROR:', 'Unable to connect to database');
       } else {
         var collection = db.collection('purchase');
-        collection.insertOne(data, function (err, result) {
+        collection.insertOne(data, function (err2, result) {
           console.log(result.ops[0]._id);
-          if (err) {
+          if (err2) {
             console.error('ERROR:', 'Unable to insert data to database');
           } else {
             console.log('INFO:', 'Success insert into database');
