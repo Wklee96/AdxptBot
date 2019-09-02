@@ -4,6 +4,7 @@ const RequestSending = require('./RequestSending.js');
 const requestJson = require('./RequestJson.js');
 const database = require('./Database.js');
 const User = require('./User.js');
+var config = require('../services/Config.js');
 
 module.exports = class Receive {
   constructor (psid, webhookMessaging) {
@@ -129,7 +130,7 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `https://c070a067.ngrok.io/product/${productName}/${fullName}`,
+        url: `${config.appUrl}/product/${productName}/${fullName}`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
@@ -144,7 +145,7 @@ module.exports = class Receive {
     const buttons = [
       {
         type: 'web_url',
-        url: `https://c070a067.ngrok.io/product/${product}/${fullName}/${num}`,
+        url: `${config.appUrl}/product/${product}/${fullName}/${num}`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true

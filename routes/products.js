@@ -3,6 +3,7 @@ var router = express.Router();
 var database = require('../services/Database');
 var requestSending = require('../services/RequestSending');
 var requestJson = require('../services/RequestJson');
+var config = require('../services/Config.js');
 
 /* GET home page. */
 router.get('/:product/:name/:package', (req, res) => {
@@ -13,7 +14,7 @@ router.get('/:product/:name/:package', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: req.params.package });
+    res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: req.params.package });
   }
 });
 
@@ -26,7 +27,7 @@ router.get('/:product/:name', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: '1' });
+    res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: '1' });
   }
 });
 
@@ -39,7 +40,7 @@ router.get('/:product', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: '', package: '1' });
+    res.render(`${req.params.product}`, { product: req.params.product, name: '', package: '1' });
   }
 });
 
@@ -73,13 +74,13 @@ router.post('/:product/:psid', (req, res) => {
             subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
                       'Note: ' + body.note,
             price: itemDescript[1].trim().substring(2),
-            currency: 'MYR'
+            currency: 'MYR',
+            image_url: `${config.appUrl}/images/${req.params.product}.png`
           }
         ]
       };
 
       const receiptJson = requestJson.makeReceipt(req.params.psid, payload);
-      console.log(JSON.stringify(receiptJson));
       requestSending.callSendAPI(requestJson.makeTextRequest(req.params.psid, text));
       requestSending.callSendAPI(receiptJson);
     } else {

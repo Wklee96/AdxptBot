@@ -23,6 +23,7 @@ module.exports = {
   pageAccesToken: process.env.PAGE_ACCESS_TOKEN,
   appSecret: process.env.APP_SECRET,
   verifyToken: process.env.VERIFY_TOKEN,
+  appUrl: process.env.APP_URL,
 
   // Dialogflow agent bearers
   adrienBearer: process.env.ADRIEN,

@@ -113,50 +113,83 @@
         <div class="container">
             <div class="card">
                 <fieldset class="form-group">
-                    <h5 align="center" class="card-header">
+                    <h6 align="center" class="card-header">
                         <legend class="col-form-label col-sm-2 pt-0">
-                            Please select your order!
+                                [Turtle Scratch & Swirl Remover]
+                                <br>
+                                Please select your order!
                         </legend>
-                    </h5>
+                    </h6>
+                    <div>
+                        <img src="/images/<%= product %>.png" class="card-img-top">
+                    </div>
                     <div class="card-body">
                         <div class="col-sm-10">
                             <% if (package === '1') { %>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="howmany" id="comboOne"
-                                        value="[Turtle Scratch & Swirl Remover] One Bottle - RM135" checked>
+                                        value="[Turtle Scratch & Swirl Remover] 1 Bottle - RM135" checked>
                                     <label class="form-check-label" for="howmany">
-                                        [Turtle Scratch & Swirl Remover] One Bottle - RM135
+                                        1 Bottle - RM135
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
-                                        value="[Turtle Scratch & Swirl Remover] Two Bottles - RM180">
+                                        value="[Turtle Scratch & Swirl Remover] 2 Bottles - RM180">
                                     <label class="form-check-label" for="howmany">
-                                        [Turtle Scratch & Swirl Remover] Two Bottles - RM180
+                                        2 Bottles - RM180
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] 3 Bottles - RM202">
+                                    <label class="form-check-label" for="howmany">
+                                        3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] 4 Bottles - RM243">
+                                    <label class="form-check-label" for="howmany">
+                                        4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
                                     </label>
                                 </div>
                             <% } else { %>
                                 <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="howmany" id="comboOne"
-                                            value="[Turtle Scratch & Swirl Remover] One Bottle - RM135">
-                                        <label class="form-check-label" for="howmany">
-                                            [Turtle Scratch & Swirl Remover] One Bottle - RM135
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
-                                            value="[Turtle Scratch & Swirl Remover] Two Bottles - RM180" checked>
-                                        <label class="form-check-label" for="howmany">
-                                            [Turtle Scratch & Swirl Remover] Two Bottles - RM180
-                                        </label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboOne"
+                                        value="[Turtle Scratch & Swirl Remover] 1 Bottle - RM135" checked>
+                                    <label class="form-check-label" for="howmany">
+                                        1 Bottle - RM135
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] 2 Bottles - RM180">
+                                    <label class="form-check-label" for="howmany">
+                                        2 Bottles - RM180
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] 3 Bottles - RM202">
+                                    <label class="form-check-label" for="howmany">
+                                        3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                        value="[Turtle Scratch & Swirl Remover] 4 Bottles - RM243">
+                                    <label class="form-check-label" for="howmany">
+                                        4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
+                                    </label>
+                                </div>
                             <% } %>
                         </div>
                     </div>
                 </fieldset>
                 <div class="form-row">
                     <div class="col">
-                        <h6 align="center">*To order more than 2, leave a comment in the note section!</h6>
+                        <h6 align="center">*To order more than 4, leave a comment in the note section!</h6>
                     </div>
                 </div>
             </div>
