@@ -48,7 +48,7 @@ router.post('/:product/:psid', (req, res) => {
   const body = req.body;
   database.insertPurchase(req.params.product, body, (success, result) => {
     let text = '';
-    const itemDescript = body.howmany.split('_-');
+    const itemDescript = body.howmany.split('-');
     if (success) {
       text = 'Thank you so much for shopping with us!! We will confirm the delivery and send you a message in a few days!';
       const payload = {
@@ -66,15 +66,14 @@ router.post('/:product/:psid', (req, res) => {
           country: 'MY'
         },
         summary: {
-          total_cost: itemDescript[2].trim().substring(2)
+          total_cost: itemDescript[1].trim().substring(2)
         },
         elements: [
           {
-            title: itemDescript[0].trim(),
+            title: itemDescript[0].split('_').join(' '),
             subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
                       'Note: ' + body.note,
-            quantity: itemDescript[1].substring(0, 1),
-            price: itemDescript[2].trim().substring(2),
+            price: itemDescript[1].trim().substring(2),
             currency: 'MYR',
             image_url: `${config.appUrl}/images/${req.params.product}.png`
           }
