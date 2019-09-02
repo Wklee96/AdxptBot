@@ -22,89 +22,27 @@
         crossorigin="anonymous"></script>
 
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '511187039699348');
         fbq('track', 'PageView');
     </script>
     <noscript>
-    <img height="1" width="1" style="display:none" 
-            src="https://www.facebook.com/tr?id=5111870396993488&ev=PageView&noscript=1"/>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=511187039699348&ev=PageView&noscript=1" />
     </noscript>
-    <script type="text/javascript">
-        var button = document.getElementById('submitButton');
-        button.addEventListener(
-          'click', 
-          function() { 
-            fbq('track', 'AddToCart', {
-              content_name: 'Turtle Scratch & Swirl Remover' 
-            });          
-          },
-          false
-        );
-      </script>
 </head>
 
 <body>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'Messenger'));
-        window.extAsyncInit = function () {
-            MessengerExtensions.getSupportedFeatures(function success(result) {
-                let features = result.supported_features;
-                if (features.indexOf("context") != -1) {
-                    MessengerExtensions.askPermission(
-                        function (permission_response) {
-                            // Person grants or rejects the asked permission.
-                            let permissions = permission_response.permissions; // list of all permissions granted
-                            let isGranted = permission_response.isGranted;
-
-                            if (isGranted) {
-                                // User has granted user_profile permission
-                                MessengerExtensions.getContext(325532075064592,
-                                    function success(thread_context) {
-                                        // success
-                                        console.log(thread_context);
-                                        document.getElementById('insertPurchase').action = `/product/turtle/${thread_context.psid}`;
-                                        document.getElementById('submitButton').addEventListener('click', function () {
-                                            MessengerExtensions.requestCloseBrowser(function success() {
-                                                console.log("Webview closing");
-                                            }, function error(err) {
-                                                console.log(err);
-                                            });
-                                        })
-                                    },
-                                    function error(err) {
-                                        console.log(err);
-                                    }
-                                );
-                            }
-                        }, function (errorCode, errorMessage) {
-                            // Error occurred
-                            console.log(errorMessage);
-                        },
-                        "user_profile"
-                    );
-                }
-            }, function error(err) {
-                console.log(err);
-            });
-        };
-    </script>
     <form role="form" id="insertPurchase" method="POST">
         <div id="ad">
             <img src='/images/Cash on Delivery!.png' width=405px height=150px>
@@ -115,9 +53,9 @@
                 <fieldset class="form-group">
                     <h6 align="center" class="card-header">
                         <legend class="col-form-label col-sm-2 pt-0">
-                                [Turtle Scratch & Swirl Remover]
-                                <br>
-                                Please select your order!
+                            [Turtle Scratch & Swirl Remover]
+                            <br>
+                            Please select your order!
                         </legend>
                     </h6>
                     <div>
@@ -126,63 +64,63 @@
                     <div class="card-body">
                         <div class="col-sm-10">
                             <% if (package === '1') { %>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboOne"
-                                        value="[Turtle Scratch & Swirl Remover]_1 Bottle - RM135" checked>
-                                    <label class="form-check-label" for="howmany">
-                                        1 Bottle - RM135
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
-                                        value="[Turtle Scratch & Swirl Remover]_2 Bottles - RM180">
-                                    <label class="form-check-label" for="howmany">
-                                        2 Bottles - RM180 (66% OFF for 2nd bottle) 
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboThree"
-                                        value="[Turtle Scratch & Swirl Remover]_3 Bottles - RM202">
-                                    <label class="form-check-label" for="howmany">
-                                        3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboFour"
-                                        value="[Turtle Scratch & Swirl Remover]_4 Bottles - RM243">
-                                    <label class="form-check-label" for="howmany">
-                                        4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
-                                    </label>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboOne"
+                                    value="[Turtle Scratch & Swirl Remover]_1 Bottle - RM135" checked>
+                                <label class="form-check-label" for="howmany">
+                                    1 Bottle - RM135
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                    value="[Turtle Scratch & Swirl Remover]_2 Bottles - RM180">
+                                <label class="form-check-label" for="howmany">
+                                    2 Bottles - RM180 (66% OFF for 2nd bottle)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboThree"
+                                    value="[Turtle Scratch & Swirl Remover]_3 Bottles - RM202">
+                                <label class="form-check-label" for="howmany">
+                                    3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboFour"
+                                    value="[Turtle Scratch & Swirl Remover]_4 Bottles - RM243">
+                                <label class="form-check-label" for="howmany">
+                                    4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
+                                </label>
+                            </div>
                             <% } else { %>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboOne"
-                                        value="[Turtle Scratch & Swirl Remover]_1 Bottle - RM135">
-                                    <label class="form-check-label" for="howmany">
-                                        1 Bottle - RM135
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
-                                        value="[Turtle Scratch & Swirl Remover]_2 Bottles - RM180" checked>
-                                    <label class="form-check-label" for="howmany">
-                                        2 Bottles - RM180 RM180 (66% OFF for 2nd bottle)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboThree"
-                                        value="[Turtle Scratch & Swirl Remover]_3 Bottles - RM202">
-                                    <label class="form-check-label" for="howmany">
-                                        3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="howmany" id="comboFour"
-                                        value="[Turtle Scratch & Swirl Remover]_4 Bottles - RM243">
-                                    <label class="form-check-label" for="howmany">
-                                        4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
-                                    </label>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboOne"
+                                    value="[Turtle Scratch & Swirl Remover]_1 Bottle - RM135">
+                                <label class="form-check-label" for="howmany">
+                                    1 Bottle - RM135
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboTwo"
+                                    value="[Turtle Scratch & Swirl Remover]_2 Bottles - RM180" checked>
+                                <label class="form-check-label" for="howmany">
+                                    2 Bottles - RM180 RM180 (66% OFF for 2nd bottle)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboThree"
+                                    value="[Turtle Scratch & Swirl Remover]_3 Bottles - RM202">
+                                <label class="form-check-label" for="howmany">
+                                    3 Bottles - RM202 (FREE 3rd bottle, 50% OFF for 2nd bottle)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="howmany" id="comboFour"
+                                    value="[Turtle Scratch & Swirl Remover]_4 Bottles - RM243">
+                                <label class="form-check-label" for="howmany">
+                                    4 Bottles - RM243 (FREE 4th bottle, 60% OFF for 2nd & 3rd bottle)
+                                </label>
+                            </div>
                             <% } %>
                         </div>
                     </div>
@@ -208,8 +146,7 @@
                         </div>
                         <div class="col">
                             <label for="phoneumber">*Phone Number</label>
-                            <input type="tel" class="form-control" id="phoneumber" name="phonenumber"
-                            required>
+                            <input type="tel" class="form-control" id="phoneumber" name="phonenumber" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -221,15 +158,13 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="inputState">*State</label>
-                            <input type="text" class="form-control" id="inputState" name="inputState"
-                                required>
+                            <input type="text" class="form-control" id="inputState" name="inputState" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="inputCity">*City</label>
-                            <input type="text" class="form-control" id="inputCity" name="inputCity"
-                                required>
+                            <input type="text" class="form-control" id="inputCity" name="inputCity" required>
                         </div>
                         <div class="col">
                             <label for="inputZip">*Zip</label>
@@ -239,8 +174,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="inputAddress">*Full Address</label>
-                            <input type="text" class="form-control" id="inputAddress" name="inputAddress"
-                                required>
+                            <input type="text" class="form-control" id="inputAddress" name="inputAddress" required>
                         </div>
                     </div>
                 </div>
@@ -323,6 +257,68 @@
         </div>
     </form>
     </div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'Messenger'));
+        window.extAsyncInit = function () {
+            MessengerExtensions.getSupportedFeatures(function success(result) {
+                let features = result.supported_features;
+                if (features.indexOf("context") != -1) {
+                    MessengerExtensions.askPermission(
+                        function (permission_response) {
+                            // Person grants or rejects the asked permission.
+                            let permissions = permission_response.permissions; // list of all permissions granted
+                            let isGranted = permission_response.isGranted;
+
+                            if (isGranted) {
+                                // User has granted user_profile permission
+                                MessengerExtensions.getContext(325532075064592,
+                                    function success(thread_context) {
+                                        // success
+                                        console.log(thread_context);
+                                        document.getElementById('insertPurchase').action = `/product/turtle/${thread_context.psid}`;
+                                        document.getElementById('submitButton').addEventListener('click', function () {
+                                            var form = document.getElementById('insertPurchase');
+                                            for (var i = 0; i < form.elements.length; i++) {
+                                                if (form.elements[i].value === '' && form.element[i].hasAttribute('required')) {
+                                                    return false;
+                                                }
+                                            }
+                                            fbq('track', 'AddToCart', {
+                                                content_name: 'Turtle Scratch & Swirl Remover'
+                                            });
+                                            MessengerExtensions.requestCloseBrowser(function success() {
+                                                console.log("Webview closing");
+                                            }, function error(err) {
+                                                console.log(err);
+                                            });
+                                        })
+                                    },
+                                    function error(err) {
+                                        console.log(err);
+                                    }
+                                );
+                            }
+                        }, function (errorCode, errorMessage) {
+                            // Error occurred
+                            console.log(errorMessage);
+                        },
+                        "user_profile"
+                    );
+                }
+            }, function error(err) {
+                console.log(err);
+            });
+        };
+    </script>
 </body>
 
 </html>

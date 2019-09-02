@@ -102,7 +102,7 @@ module.exports = class Receive {
           setTimeout(() => RequestSending.sendTyping(this.psid), delay);
           delay += 1500;
           setTimeout(() => RequestSending.callSendAPI(response), delay);
-          delay += 4000;
+          delay += 3000;
         }
       }
     } else {
