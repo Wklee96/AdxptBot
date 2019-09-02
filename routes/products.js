@@ -13,7 +13,7 @@ router.get('/:product/:name/:package', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: req.package });
+    res.render(`${req.params.product}`, { name: `${req.params.name}`, package: req.params.package });
   }
 });
 

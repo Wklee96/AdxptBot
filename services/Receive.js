@@ -2,6 +2,7 @@
 
 const RequestSending = require('./RequestSending.js');
 const requestJson = require('./RequestJson.js');
+const database = require('./Database.js');
 const User = require('./User.js');
 
 module.exports = class Receive {
@@ -60,6 +61,20 @@ module.exports = class Receive {
       const productDescript = postback.payload.substring(13).split('_');
       console.log(`INFO: Buying package ${productDescript[1]} of ${productDescript[0]}`);
       this.sendMessage(this.choosePackageForm(productDescript[0], productDescript[1]));
+    } else if (payload.includes('purchase_info_')) {
+      const infoType = payload.substring(14, 16);
+      const product = payload.substring(17);
+      const response = [];
+      database.getInfo(product, infoType, (info) => {
+        for (const infoObj of info) {
+          response.push(requestJson.makeTextRequest(this.psid, infoObj.text));
+          if (infoObj.url) {
+            response.push(requestJson.makeImageAttachment(this.psid, infoObj.url));
+          }
+        }
+        response.push(this.learnMoreResponse(this.psid, product, true));
+        this.sendMessage(response);
+      });
     }
   }
 
@@ -86,7 +101,7 @@ module.exports = class Receive {
           setTimeout(() => RequestSending.sendTyping(this.psid), delay);
           delay += 1500;
           setTimeout(() => RequestSending.callSendAPI(response), delay);
-          delay += 1500;
+          delay += 4000;
         }
       }
     } else {
@@ -98,7 +113,7 @@ module.exports = class Receive {
   learnMoreResponse (psid, productName, evenMore) {
     let text = 'What information do you want to find out about the product?';
     if (evenMore) {
-      text = 'Like what you see? Hit Order Now to buy today!';
+      text = 'Like what you see? Hit Buy Now to buy today!';
     }
     const fullName = this.user.fullName;
     const buttons = [
@@ -114,8 +129,8 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `https://e11aa77b.ngrok.io/product/${productName}/${fullName}`,
-        title: 'Order Now',
+        url: `https://c070a067.ngrok.io/product/${productName}/${fullName}`,
+        title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
       }
@@ -124,13 +139,13 @@ module.exports = class Receive {
   }
 
   choosePackageForm (product, num) {
-    const text = 'Click here to order!';
+    const text = 'Click here to buy!';
     const fullName = this.user.fullName;
     const buttons = [
       {
         type: 'web_url',
-        url: `https://e11aa77b.ngrok.io/product/${product}/${fullName}/${num}`,
-        title: 'Order Now',
+        url: `https://c070a067.ngrok.io/product/${product}/${fullName}/${num}`,
+        title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
       }
