@@ -2,15 +2,26 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb+srv://lweikang96:S9605967a@cluster0-f52b9.mongodb.net/test?retryWrites=true&w=majority';
 
 module.exports = class Database {
-  static insertPurchase (product, body, cb) {
+  static insertPurchase(product, body, cb) {
     console.log('INFO:', 'Inserting purchase with data');
     let note = null;
     if (body.note !== undefined) {
       note = body.note.split(',').join('、');
     }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    var productDescript = body.howmany.split('_');
+    var productName = productDescript[0];
+    var quantity = productDescript[1].substring(0, 1);
     var data = {
-      productName: product,
-      combo: body.howmany,
+      dateOrdered: today,
+      productName: productName,
+      quantity: quantity,
+      combo: productDescript.join(' '),
       name: body.name.split(',').join(' '),
       phone: body.phonenumber,
       state: body.inputState.split(',').join(' '),
@@ -18,8 +29,9 @@ module.exports = class Database {
       zip: body.inputZip.split(',').join(' '),
       address: body.inputAddress.split(',').join(' '),
       preference: body.week,
-      time: body.time,
-      note: note
+      preferredTime: body.time,
+      note: note,
+      exportToGS: false
     };
     MongoClient.connect(url, function (err, client) {
       var db = client.db('purchaseOrder');
@@ -41,7 +53,7 @@ module.exports = class Database {
     });
   }
 
-  static getLearnMoreUrls (product, cb) {
+  static getLearnMoreUrls(product, cb) {
     MongoClient.connect(url, function (err, client) {
       var db = client.db('purchaseOrder');
       if (err) {
@@ -61,7 +73,7 @@ module.exports = class Database {
     });
   }
 
-  static getInfo (productName, type, cb) {
+  static getInfo(productName, type, cb) {
     let info;
     switch (type) {
       case 'UI':

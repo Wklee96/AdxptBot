@@ -140,7 +140,7 @@ module.exports = class Receive {
   }
 
   choosePackageForm (product, num) {
-    const text = 'Click here to buy!';
+    const text = 'Excellent. Fill up this form so that we can process your order!';
     const fullName = this.user.fullName;
     const buttons = [
       {
