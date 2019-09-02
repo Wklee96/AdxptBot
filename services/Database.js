@@ -5,8 +5,8 @@ module.exports = class Database {
   static insertPurchase(product, body, cb) {
     console.log('INFO:', 'Inserting purchase with data');
     let note = null;
-    if (body.note !== undefined) {
-      note = body.note.split(',').join('、');
+    if (body.inputNote !== undefined) {
+      note = body.inputNote.split(',').join('、');
     }
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
