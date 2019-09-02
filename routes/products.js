@@ -72,7 +72,7 @@ router.post('/:product/:psid', (req, res) => {
           {
             title: itemDescript[0].split('_').join(' '),
             subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
-                      'Note: ' + body.note,
+                      'Note: ' + body.inputNote,
             price: itemDescript[1].trim().substring(2),
             currency: 'MYR',
             image_url: `${config.appUrl}/images/${req.params.product}.png`
