@@ -34,11 +34,11 @@
             s.parentNode.insertBefore(t, s)
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '');
+        fbq('init', '511187039699348');
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=8&ev=PageView&noscript=1" /></noscript>
+            src="https://www.facebook.com/tr?id=511187039699348&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
 </head>
 
@@ -70,10 +70,8 @@
                                     function success(thread_context) {
                                         // success
                                         console.log(thread_context);
-                                        document.getElementById('insertPurchase').action = `/product/turtle/${thread_context.psid}`;
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             var form = document.getElementById('insertPurchase');
-                                            console.log(form.elements);
                                             for (var i = 0; i < form.elements.length - 1; i++) {
                                                 if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
                                                     return false;
@@ -106,7 +104,7 @@
             });
         };
     </script>
-    <form role="form" id="insertPurchase" method="POST">
+    <form role="form" id="insertPurchase" method="POST" action='/product/turtle/<%= psid %>'>
         <div id="ad">
             <img src='/images/Cash on Delivery!.png' width=405px height=150px>
         </div>
