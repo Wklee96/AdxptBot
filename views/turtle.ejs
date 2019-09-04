@@ -69,11 +69,11 @@
                                 MessengerExtensions.getContext(325532075064592,
                                     function success(thread_context) {
                                         // success
-                                        console.log(thread_context);
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             var form = document.getElementById('insertPurchase');
                                             for (var i = 0; i < form.elements.length - 1; i++) {
                                                 if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                                                    alert('Please fill in all required fields');
                                                     return false;
                                                 }
                                             }
