@@ -70,6 +70,7 @@
                                     function success(thread_context) {
                                         // success
                                         console.log(thread_context);
+                                        document.getElementById('insertPurchase').action = `/product/turtle/${thread_context.psid}`;
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             var form = document.getElementById('insertPurchase');
                                             console.log(form.elements);
@@ -106,7 +107,7 @@
             });
         };
     </script>
-    <form role="form" id="insertPurchase" method="POST" action="/product/turtle/<%= psid %>">
+    <form role="form" id="insertPurchase" method="POST">
         <div id="ad">
             <img src='/images/Cash on Delivery!.png' width=405px height=150px>
         </div>
