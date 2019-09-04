@@ -82,8 +82,8 @@ router.post('/:product/:psid', (req, res) => {
       requestSending.callSendAPI(receiptJson);
     } else {
       text = 'Oops! Looks like something has gone wrong.. Please click on order now to submit the form again.';
-      res.status(200).send('Something has gone wrong. Please check and re-submit your form.');
       requestSending.callSendAPI(requestJson.makeTextRequest(req.params.psid, text));
+      res.status(200).send('Something has gone wrong. Please check and re-submit your form.');
     }
   });
 });
