@@ -130,7 +130,7 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `${config.appUrl}/product/${this.psid}/${productName}/${fullName}`,
+        url: `${config.appUrl}/product/${productName}/${this.psid}/${fullName}`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
@@ -145,7 +145,7 @@ module.exports = class Receive {
     const buttons = [
       {
         type: 'web_url',
-        url: `${config.appUrl}/product/${this.psid}/${product}/${fullName}/${num}`,
+        url: `${config.appUrl}/product/${product}/${this.psid}/${fullName}/${num}`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
