@@ -23,7 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(csp({
   directives: {
-    frameSrc: ['https://www.messenger.com', 'https://www.facebook.com']
+    defaultSrc: ["'self'"],
+    frameSrc: ["'self'", 'https://www.messenger.com', 'https://www.facebook.com']
   }
 }));
 

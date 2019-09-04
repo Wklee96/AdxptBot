@@ -7,39 +7,18 @@ var config = require('../services/Config.js');
 
 /* GET home page. */
 router.get('/:product/:psid/:name/:package', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
-  }});
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
+});
 
 /* GET home page. */
 router.get('/:product/:psid/:name', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: 1 });
-  }});
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: 1 });
+});
 
 /* GET home page. */
 router.get('/:product/:psid', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: '', package: 1 });
-  }});
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: '', package: 1 });
+});
 
 router.post('/:product/:psid', (req, res) => {
   const body = req.body;
@@ -69,7 +48,7 @@ router.post('/:product/:psid', (req, res) => {
           {
             title: itemDescript[0].split('_').join(' '),
             subtitle: 'Preferences: ' + body.week + ' ' + body.time + '. ' +
-                      'Note: ' + body.inputNote,
+              'Note: ' + body.inputNote,
             price: itemDescript[1].trim().substring(2),
             currency: 'MYR',
             image_url: `${config.appUrl}/images/${req.params.product}.png`
