@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var config = require('./services/Config.js');
 var Receive = require('./services/Receive.js');
+const csp = require('helmet-csp');
 var app = express();
 
 // Page routers
@@ -20,6 +21,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(csp({
+  directives: {
+    frameSrc: ['https://www.messenger.com', 'https://www.facebook.com']
+  }
+}));
 
 app.use('/product', productRouter);
 

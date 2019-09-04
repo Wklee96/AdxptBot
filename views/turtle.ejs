@@ -72,6 +72,7 @@
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             var form = document.getElementById('insertPurchase');
                                             for (var i = 0; i < form.elements.length - 1; i++) {
+                                                console.log(form.elements[i].value);
                                                 if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
                                                     alert('Please fill in all required fields');
                                                     return false;
@@ -307,7 +308,8 @@
                 </div>
             </div>
             <br>
-            <button type="button" id="submitButton" class="btn btn-danger" style="display: block; margin: 0 auto;">Submit</button>
+            <button type="button" id="submitButton" class="btn btn-danger"
+                style="display: block; margin: 0 auto;">Submit</button>
             <br>
         </div>
     </form>
