@@ -38,7 +38,7 @@ router.get('/:product/:psid', (req, res) => {
     } else if (referer.indexOf('www.facebook.com') >= 0) {
       res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
     }
-    res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
+    res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: '', package: req.params.package });
   }});
 
 router.post('/:product/:psid', (req, res) => {
