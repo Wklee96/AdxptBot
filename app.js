@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(csp({
   directives: {
     defaultSrc: ["'self'"],
-    frameSrc: ["'self'", 'https://www.messenger.com', 'https://www.facebook.com']
+    frameSrc: ["'self'", 'https://www.messenger.com', 'https://www.facebook.com'],
+    scriptSrc: ["'self'", 'https://code.jquery.com', 'https://cdnjs.cloudflare.com', 'https://stackpath.bootstrapcdn.com']
   }
 }));
 
