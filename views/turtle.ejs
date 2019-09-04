@@ -77,6 +77,7 @@
                                                     return false;
                                                 }
                                             }
+                                            form.submit();
                                             fbq('track', 'AddToCart', {
                                                 content_name: 'Turtle Scratch & Swirl Remover'
                                             });
@@ -249,55 +250,51 @@
                 </h5>
                 <div class="card-body">
                     <div class="form-row">
-                        <fieldset class="form-group">
-                            <div class="col">
-                                <legend class="col-form-label col-sm-2 pt-0">Preferred day</legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="week" id="weekday"
-                                            value="weekday" checked>
-                                        <label class="form-check-label" for="weekday">
-                                            Weekdays
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="week" id="weekend"
-                                            value="weekend">
-                                        <label class="form-check-label" for="weekend">
-                                            Weekends
-                                        </label>
-                                    </div>
+                        <div class="col">
+                            <legend class="col-form-label col-sm-2 pt-0">Preferred day</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="week" id="weekday"
+                                        value="weekday" checked>
+                                    <label class="form-check-label" for="weekday">
+                                        Weekdays
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="week" id="weekend"
+                                        value="weekend">
+                                    <label class="form-check-label" for="weekend">
+                                        Weekends
+                                    </label>
                                 </div>
                             </div>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <div class="col">
-                                <legend class="col-form-label col-sm-2 pt-0">Preferred Time</legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="time" id="morning"
-                                            value="morning" checked>
-                                        <label class="form-check-label" for="morning">
-                                            Morning
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="time" id="afternoon"
-                                            value="afternoon">
-                                        <label class="form-check-label" for="afternoon">
-                                            Afternoon
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="time" id="evening"
-                                            value="evening">
-                                        <label class="form-check-label" for="evening">
-                                            Evening
-                                        </label>
-                                    </div>
+                        </div>
+                        <div class="col">
+                            <legend class="col-form-label col-sm-2 pt-0">Preferred Time</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="morning"
+                                        value="morning" checked>
+                                    <label class="form-check-label" for="morning">
+                                        Morning
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="afternoon"
+                                        value="afternoon">
+                                    <label class="form-check-label" for="afternoon">
+                                        Afternoon
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="time" id="evening"
+                                        value="evening">
+                                    <label class="form-check-label" for="evening">
+                                        Evening
+                                    </label>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
                     </div>
                     <hr>
                     <div class="form-row">
@@ -310,10 +307,7 @@
                 </div>
             </div>
             <br>
-            <div class="form-actions">
-                <button id="submitButton" class="btn btn-danger"
-                    style="display: block; margin: 0 auto;">Submit</button>
-            </div>
+            <button type="button" id="submitButton" class="btn btn-danger" style="display: block; margin: 0 auto;">Submit</button>
             <br>
         </div>
     </form>
