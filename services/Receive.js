@@ -97,12 +97,11 @@ module.exports = class Receive {
       for (const response of responses) {
         if (response.message.attachment && response.message.attachment.type === 'image') {
           setTimeout(() => RequestSending.callSendAPI(response), delay);
-          delay += 3000;
         } else {
+          delay += 3000;
           setTimeout(() => RequestSending.sendTyping(this.psid), delay);
           delay += 1500;
           setTimeout(() => RequestSending.callSendAPI(response), delay);
-          delay += 3000;
         }
       }
     } else {

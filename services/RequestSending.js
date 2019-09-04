@@ -28,7 +28,7 @@ module.exports = class GraphAPI {
       uri: `${config.mPlatfom}/${id}`,
       qs: {
         access_token: config.pageAccesToken,
-        fields: 'first_name, last_name, gender, locale, timezone'
+        fields: 'first_name, last_name'
       },
       method: 'GET'
     };
