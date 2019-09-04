@@ -78,12 +78,12 @@
                                                     return false;
                                                 }
                                             }
+                                            form.submit();
                                             fbq('track', 'AddToCart', {
                                                 content_name: 'Turtle Scratch & Swirl Remover'
                                             });
                                             MessengerExtensions.requestCloseBrowser(function success() {
                                                 console.log("Webview closing");
-                                                form.submit();
                                             }, function error(err) {
                                                 console.log(err);
                                             });
@@ -106,7 +106,7 @@
             });
         };
     </script>
-    <form role="form" id="insertPurchase" method="POST" action="product/turtle/<%= psid %>">
+    <form role="form" id="insertPurchase" method="POST" action="/product/turtle/<%= psid %>">
         <div id="ad">
             <img src='/images/Cash on Delivery!.png' width=405px height=150px>
         </div>
