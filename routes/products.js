@@ -6,18 +6,18 @@ var requestJson = require('../services/RequestJson');
 var config = require('../services/Config.js');
 
 /* GET home page. */
-router.get('/:product/:name/:package', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: req.params.package });
+router.get('/:product/:psid/:name/:package', (req, res) => {
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
 });
 
 /* GET home page. */
-router.get('/:product/:name', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: '1' });
+router.get('/:product/:psid/:name', (req, res) => {
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: '1' });
 });
 
 /* GET home page. */
-router.get('/:product', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, name: '', package: '1' });
+router.get('/:product/:psid', (req, res) => {
+  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: '', package: '1' });
 });
 
 router.post('/:product/:psid', (req, res) => {
