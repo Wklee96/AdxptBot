@@ -7,41 +7,17 @@ var config = require('../services/Config.js');
 
 /* GET home page. */
 router.get('/:product/:name/:package', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: req.params.package });
-  }
+  res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: req.params.package });
 });
 
 /* GET home page. */
 router.get('/:product/:name', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: '1' });
-  }
+  res.render(`${req.params.product}`, { product: req.params.product, name: `${req.params.name}`, package: '1' });
 });
 
 /* GET home page. */
 router.get('/:product', (req, res) => {
-  const referer = req.get('Referer');
-  if (referer) {
-    if (referer.indexOf('www.messenger.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-    } else if (referer.indexOf('www.facebook.com') >= 0) {
-      res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-    }
-    res.render(`${req.params.product}`, { product: req.params.product, name: '', package: '1' });
-  }
+  res.render(`${req.params.product}`, { product: req.params.product, name: '', package: '1' });
 });
 
 router.post('/:product/:psid', (req, res) => {
