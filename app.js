@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var config = require('./services/Config.js');
 var Receive = require('./services/Receive.js');
-var helmet = require('helmet');
-const frameguard = require('frameguard')
 var app = express();
 
 // Page routers
@@ -22,15 +20,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet.frameguard({ action: 'sameorigin' }));
-app.use(frameguard({
-  action: 'allow-from',
-  domain: 'https://www.messenger.com/'
-}));
-app.use(frameguard({
-  action: 'allow-from',
-  domain: 'https://www.facebook.com/'
-}));
 
 app.use('/product', productRouter);
 
