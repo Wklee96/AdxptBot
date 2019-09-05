@@ -8,17 +8,18 @@ module.exports = class Database {
     if (body.inputNote !== undefined) {
       note = body.inputNote.split(',').join('、');
     }
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
+    var date = new Date();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var yyyy = date.getFullYear();
 
-    today = dd + '/' + mm + '/' + yyyy;
+    var today = dd + '/' + mm + '/' + yyyy;
     var productDescript = body.howmany.split('_');
     var productName = productDescript[0];
     var quantity = productDescript[1].substring(0, 1);
     var data = {
       dateOrdered: today,
+      timeOrdered: String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0'),
       productName: productName,
       quantity: quantity,
       combo: productDescript.join(' '),
