@@ -72,17 +72,16 @@
                                         document.getElementById('submitButton').addEventListener('click', function () {
                                             var form = document.getElementById('insertPurchase');
                                             for (var i = 0; i < form.elements.length - 1; i++) {
-                                                console.log(form.elements[i].value);
                                                 if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
                                                     alert('Please fill in all required fields');
                                                     return false;
                                                 }
                                             }
-                                            form.submit();
                                             fbq('track', 'AddToCart', {
                                                 content_name: 'Turtle Scratch & Swirl Remover'
                                             });
                                             MessengerExtensions.requestCloseBrowser(function success() {
+                                                form.submit();
                                                 console.log("Webview closing");
                                             }, function error(err) {
                                                 console.log(err);
