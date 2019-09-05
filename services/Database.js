@@ -19,7 +19,7 @@ module.exports = class Database {
     var quantity = productDescript[1].substring(0, 1);
     var data = {
       dateOrdered: today,
-      timeOrdered: String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0'),
+      timeOrdered: String(date.getHours() + 8).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0'),
       productName: productName,
       quantity: quantity,
       combo: productDescript.join(' '),
