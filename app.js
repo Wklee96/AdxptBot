@@ -25,7 +25,9 @@ app.use(csp({
   directives: {
     defaultSrc: ["'self'"],
     frameSrc: ["'self'", 'https://www.messenger.com', 'https://www.facebook.com'],
-    scriptSrc: ["'self'", 'https://code.jquery.com', 'https://cdnjs.cloudflare.com', 'https://stackpath.bootstrapcdn.com']
+    scriptSrc: ["'self'", "'unsafe-inline'", 'https://code.jquery.com', 'https://cdnjs.cloudflare.com', 'https://stackpath.bootstrapcdn.com', 'https://connect.facebook.net', 'https://connect.facebook.com'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://stackpath.bootstrapcdn.com'],
+    imgSrc: ["'self'", 'imgur.com', 'data:', 'https:']
   }
 }));
 
