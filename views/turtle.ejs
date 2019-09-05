@@ -34,77 +34,40 @@
             s.parentNode.insertBefore(t, s)
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '511187039699348');
+        fbq('init', '712073742566133');
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=511187039699348&ev=PageView&noscript=1" /></noscript>
+            src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
+
+    <style>
+        #loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.7;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loading-image {
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 46%;
+            width: 32px;
+            z-index: 100;
+        }
+    </style>
 </head>
 
 <body>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'Messenger'));
-        window.extAsyncInit = function () {
-            MessengerExtensions.getSupportedFeatures(function success(result) {
-                let features = result.supported_features;
-                if (features.indexOf("context") != -1) {
-                    MessengerExtensions.askPermission(
-                        function (permission_response) {
-                            // Person grants or rejects the asked permission.
-                            let permissions = permission_response.permissions; // list of all permissions granted
-                            let isGranted = permission_response.isGranted;
 
-                            if (isGranted) {
-                                // User has granted user_profile permission
-                                MessengerExtensions.getContext(325532075064592,
-                                    function success(thread_context) {
-                                        // success
-                                        document.getElementById('submitButton').addEventListener('click', function () {
-                                            var form = document.getElementById('insertPurchase');
-                                            for (var i = 0; i < form.elements.length - 1; i++) {
-                                                if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
-                                                    alert('Please fill in all required fields');
-                                                    return false;
-                                                }
-                                            }
-                                            fbq('track', 'AddToCart', {
-                                                content_name: 'Turtle Scratch & Swirl Remover'
-                                            });
-                                            MessengerExtensions.requestCloseBrowser(function success() {
-                                                form.submit();
-                                                console.log("Webview closing");
-                                            }, function error(err) {
-                                                console.log(err);
-                                            });
-                                        })
-                                    },
-                                    function error(err) {
-                                        console.log(err);
-                                    }
-                                );
-                            }
-                        }, function (errorCode, errorMessage) {
-                            // Error occurred
-                            console.log(errorMessage);
-                        },
-                        "user_profile"
-                    );
-                }
-            }, function error(err) {
-                console.log(err);
-            });
-        };
-    </script>
     <form role="form" id="insertPurchase" method="POST" action='/product/turtle/<%= psid %>'>
         <div id="ad">
             <img src='/images/Cash on Delivery!.png' width=405px height=150px>
@@ -307,12 +270,26 @@
                 </div>
             </div>
             <br>
-            <button type="button" id="submitButton" class="btn btn-danger"
+            <button type="submit" id="submitButton" class="btn btn-danger"
                 style="display: block; margin: 0 auto;">Submit</button>
+            <div id="loading">
+                <img id="loading-image" src="/images/ajax-loader.gif" alt="Loading..." / class="center">
+            </div>
             <br>
         </div>
     </form>
     </div>
+    <script>
+        $('#loading').hide();
+        window.onload = function () {
+            document.getElementById('submitButton').addEventListener('click', function () {
+                $('#loading').show();
+                fbq('track', 'AddToCart', {
+                    content_name: 'Turtle Scratch & Swirl Remover'
+                });
+            })
+        }
+    </script>
 </body>
 
 </html>

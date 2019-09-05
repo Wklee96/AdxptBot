@@ -12,6 +12,7 @@ var app = express();
 
 // Page routers
 var productRouter = require('./routes/products');
+var submittedRouter = require('./routes/submitted');
 
 app.use(express.static('public'));
 app.use(logger('dev'));
@@ -32,6 +33,7 @@ app.use(csp({
 }));
 
 app.use('/product', productRouter);
+app.use('/submitted', submittedRouter);
 
 // Set port
 app.set('port', config.port);

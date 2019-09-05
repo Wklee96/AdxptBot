@@ -59,10 +59,11 @@ router.post('/:product/:psid', (req, res) => {
       const receiptJson = requestJson.makeReceipt(req.params.psid, payload);
       requestSending.callSendAPI(requestJson.makeTextRequest(req.params.psid, text));
       requestSending.callSendAPI(receiptJson);
+      res.redirect('/submitted');
     } else {
       text = 'Oops! Looks like something has gone wrong.. Please click on order now to submit the form again.';
       requestSending.callSendAPI(requestJson.makeTextRequest(req.params.psid, text));
-      res.status(200).send('Something has gone wrong. Please check and re-submit your form.');
+      res.redirect('/submitted');
     }
   });
 });
