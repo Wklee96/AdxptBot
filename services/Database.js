@@ -9,11 +9,11 @@ module.exports = class Database {
       note = body.inputNote.split(',').join('、');
     }
     var date = new Date();
-    var dd = String(date.getDate());
+    var dd = date.getDate();
     if (date.getHours() >= 16) {
       dd++;
     }
-    dd.padStart(2, '0');
+    dd = String(dd).padStart(2, '0');
     var mm = String(date.getMonth() + 1).padStart(2, '0');
     var yyyy = date.getFullYear();
 
