@@ -7,22 +7,28 @@ var config = require('../services/Config.js');
 
 /* GET home page. */
 router.get('/:product/:psid/:name/:package', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
+  database.getProduct(`${req.params.product}`, (result) => {
+    res.render('product', { product: result, psid: req.params.psid, name: `${req.params.name}`, package: req.params.package });
+  });
 });
 
 /* GET home page. */
 router.get('/:product/:psid/:name', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: `${req.params.name}`, package: 1 });
+  database.getProduct(`${req.params.product}`, (result) => {
+    res.render('product', { product: result, psid: req.params.psid, name: `${req.params.name}`, package: 1 });
+  });
 });
 
 /* GET home page. */
 router.get('/:product/:psid', (req, res) => {
-  res.render(`${req.params.product}`, { product: req.params.product, psid: req.params.psid, name: '', package: 1 });
+  database.getProduct(`${req.params.product}`, (result) => {
+    res.render('product', { product: result, psid: req.params.psid, name: '', package: 1 });
+  });
 });
 
 router.post('/:product/:psid', (req, res) => {
   const body = req.body;
-  database.insertPurchase(req.params.product, body, (success, result) => {
+  database.insertPurchase(body, (success, result) => {
     let text = '';
     const itemDescript = body.howmany.split('-');
     if (success) {

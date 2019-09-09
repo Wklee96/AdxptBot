@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="card">
+        <h5 align="center" class="card-header">
+            Select your preferences
+        </h5>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="col">
+                    <legend class="col-form-label col-sm-2 pt-0">Preferred day</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="week" id="weekday" value="weekday"
+                                checked>
+                            <label class="form-check-label" for="weekday">
+                                Weekdays
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="week" id="weekend" value="weekend">
+                            <label class="form-check-label" for="weekend">
+                                Weekends
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <legend class="col-form-label col-sm-2 pt-0">Preferred Time</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="time" id="morning" value="morning"
+                                checked>
+                            <label class="form-check-label" for="morning">
+                                Morning
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="time" id="afternoon" value="afternoon">
+                            <label class="form-check-label" for="afternoon">
+                                Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="time" id="evening" value="evening">
+                            <label class="form-check-label" for="evening">
+                                Evening
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputNote">Note</label>
+                    <textarea class="form-control" form="insertPurchase" id="inputNote" rows="3" name="inputNote"
+                        placeholder="Any delivery instructions"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="submit" id="submitButton" class="btn btn-danger"
+        style="display: block; margin: 0 auto;">Submit</button>
+    <div id="loading">
+        <img id="loading-image" src="" alt="" class="center">
+    </div>
+    <br>
+</div>

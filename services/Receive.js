@@ -55,9 +55,9 @@ module.exports = class Receive {
   handlePostback (postback) {
     const payload = postback.payload;
     if (payload.includes('purchase_learn_more')) {
-      const productName = postback.payload.substring(20);
-      console.log('INFO:', this.psid + ' enquiring about ' + productName);
-      this.sendMessage(this.learnMoreResponse(this.psid, productName, false));
+      const productTag = postback.payload.substring(20);
+      console.log('INFO:', this.psid + ' enquiring about ' + productTag);
+      this.sendMessage(this.learnMoreResponse(this.psid, productTag, false));
     } else if (payload.includes('purchase_yes_')) {
       const productDescript = postback.payload.substring(13).split('_');
       console.log(`INFO: Buying package ${productDescript[1]} of ${productDescript[0]}`);
@@ -110,7 +110,7 @@ module.exports = class Receive {
     }
   }
 
-  learnMoreResponse (psid, productName, evenMore) {
+  learnMoreResponse (psid, productTag, evenMore) {
     let text = 'What information do you want to find out about the product?';
     if (evenMore) {
       text = 'Like what you see? Hit Buy Now to buy today!';
@@ -120,16 +120,16 @@ module.exports = class Receive {
       {
         type: 'postback',
         title: 'How to use',
-        payload: 'purchase_info_UI_' + productName
+        payload: 'purchase_info_UI_' + productTag
       },
       {
         type: 'postback',
         title: 'Delivery Information',
-        payload: 'purchase_info_DI_' + productName
+        payload: 'purchase_info_DI_' + productTag
       },
       {
         type: 'web_url',
-        url: `${config.appUrl}/product/${productName}/${this.psid}/${fullName}/1`,
+        url: `${config.appUrl}/product/$ productTag}/${this.psid}/${fullName}/1`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true
@@ -138,13 +138,13 @@ module.exports = class Receive {
     return requestJson.makeButtons(psid, text, buttons);
   }
 
-  choosePackageForm (product, num) {
+  choosePackageForm (productTag, num) {
     const text = 'Excellent. Fill up this form so that we can process your order!';
     const fullName = this.user.fullName;
     const buttons = [
       {
         type: 'web_url',
-        url: `${config.appUrl}/product/${product}/${this.psid}/${fullName}/${num}`,
+        url: `${config.appUrl}/product/${productTag}/${this.psid}/${fullName}/${num}`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true

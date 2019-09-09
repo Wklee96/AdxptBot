@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb+srv://lweikang96:S9605967a@cluster0-f52b9.mongodb.net/test?retryWrites=true&w=majority';
 
 module.exports = class Database {
-  static insertPurchase(product, body, cb) {
+  static insertPurchase(body, cb) {
     console.log('INFO:', 'Inserting purchase with data');
     let note = null;
     if (body.inputNote !== undefined) {
@@ -103,6 +103,26 @@ module.exports = class Database {
           } else {
             console.log('INFO:', 'Success retrieval of data', result[info]);
             cb(result[info]);
+          }
+        });
+      }
+      client.close();
+    });
+  };
+
+  static getProduct (productTag, cb) {
+    MongoClient.connect(url, function (err, client) {
+      var db = client.db('purchaseOrder');
+      if (err) {
+        console.error('ERROR:', 'Unable to connect to database');
+      } else {
+        var collection = db.collection('products');
+        collection.findOne({ productTag: productTag }, (err, result) => {
+          if (err || !result) {
+            console.error('ERROR:', 'Unable to retrieve data from database');
+          } else {
+            console.log('INFO:', 'Success retrieval of data', result);
+            cb(result);
           }
         });
       }
