@@ -129,7 +129,7 @@ module.exports = class Receive {
       },
       {
         type: 'web_url',
-        url: `${config.appUrl}/product/$ productTag}/${this.psid}/${fullName}/1`,
+        url: `${config.appUrl}/product/${productTag}/${this.psid}/${fullName}/1`,
         title: 'Buy Now',
         webview_height_ratio: 'tall',
         messenger_extensions: true

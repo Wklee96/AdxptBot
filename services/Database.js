@@ -97,7 +97,7 @@ module.exports = class Database {
         console.error('ERROR:', 'Unable to connect to database');
       } else {
         var collection = db.collection('products');
-        collection.findOne({ productName: productName }, (err, result) => {
+        collection.findOne({ productTag: productName }, (err, result) => {
           if (err || !result) {
             console.error('ERROR:', 'Unable to retrieve data from database');
           } else {
