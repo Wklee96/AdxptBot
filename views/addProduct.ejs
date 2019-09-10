@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/addProduct.css"> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1 style="text-align: center">Add a product</h1>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="productName">Name of Product</label>
+                <input type="text" class="form-control" id="productName" name="productName"
+                    placeholder="Example: [Turtle Scratch & Swirl Remover]">
+            </div>
+            <div class="form-group">
+                <label for="productTag">Product Tag (One word tag for JSON)</label>
+                <input type="text" class="form-control" id="productTag" name="productTag" placeholder="Example: turtle">
+            </div>
+            <div class="form-group">
+                <label for="productImg">Product Image URL</label>
+                <input type="url" class="form-control" id="productImg" name="productImg"
+                    placeholder="You can upload the image into imgur and copy image link. Make sure is a .png or .jpg URL">
+            </div>
+
+            <div class="form-group">
+                <h3 style="text-align: center">Product Sale Options</h3>
+                <div class="form-group">
+                    <label for="optionsNum">How many options do you want?</label>
+                    <select class="form-control" id="optionsNum">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="container" id="saleOptions">
+                    <div class="card">
+                        <div class="card-header" style="text-align: center">
+                            Option 1
+                        </div>
+                        <div class="card-body">
+                            <label for="productTypes[][text]">Display Text</label>
+                            <input type="text" class="form-control" id="productTypes[][text]"
+                                name="productTypes[][text]"
+                                placeholder="Example: 2 Bottles - RM180 (66% OFF for 2nd bottle)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById("optionsNum").addEventListener("change", function () {
+            var number = document.getElementById("optionsNum").value;
+            var options = document.getElementById("saleOptions");
+
+            while (options.hasChildNodes()) {
+                options.removeChild(options.lastChild);
+            }
+
+            for (i=0;i<number;i++){
+                var cardDiv = document.createElement("div");
+                cardDiv.setAttribute('class', 'card');
+
+                var cardHeader = document.createElement("div");
+                cardHeader.setAttribute('class', 'card-header');
+                cardHeader.setAttribute('style', "text-align: center");
+                cardHeader.appendChild(document.createTextNode("Options " + (i+1)));
+
+                var cardBody = document.createElement("div");
+                cardBody.setAttribute('class', 'card-body');
+
+                var label = document.createElement('label');
+                label.setAttribute('for', "productTypes[][text]");
+                label.appendChild(document.createTextNode("Display Text"));
+
+                var input = document.createElement("input");
+                input.setAttribute('class', "form-control");
+                input.type = "text";
+                input.name = "productTypes[][text]";
+                input.id = "productTypes[][text]";
+                input.placeholder = "Example: 2 Bottles - RM180 (66% OFF for 2nd bottle)"
+
+                cardBody.appendChild(label);
+                cardBody.appendChild(input);
+                cardDiv.appendChild(cardHeader);
+                cardDiv.appendChild(cardBody);
+
+                options.appendChild(cardDiv);
+                options.appendChild(document.createElement("br"));
+            }
+
+        })
+    </script>
+</body>
+
+</html>
