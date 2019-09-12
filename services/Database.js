@@ -10,7 +10,8 @@ module.exports = class Database {
     }
     var date = new Date();
     var dd = date.getDate();
-    if (date.getHours() >= 16) {
+    var hours = date.getHours() + 8;
+    if (hours >= 0 && hours < 8) {
       dd++;
     }
     dd = String(dd).padStart(2, '0');
@@ -23,16 +24,16 @@ module.exports = class Database {
     var quantity = productDescript[1].substring(0, 1);
     var data = {
       dateOrdered: today,
-      timeOrdered: String(date.getHours() + 8).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0'),
+      timeOrdered: String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0'),
       productName: productName,
       quantity: quantity,
       combo: productDescript.join(' '),
-      name: body.name.split(',').join(' '),
+      name: body.name,
       phone: body.phonenumber,
-      state: body.inputState.split(',').join(' '),
-      city: body.inputCity.split(',').join(' '),
-      zip: body.inputZip.split(',').join(' '),
-      address: body.inputAddress.split(',').join(' '),
+      state: body.inputState,
+      city: body.inputCity,
+      zip: body.inputZip,
+      address: body.inputAddress,
       preference: body.week,
       preferredTime: body.time,
       note: note,
@@ -129,4 +130,19 @@ module.exports = class Database {
       client.close();
     });
   };
+
+  static addProduct (product, cb) {
+    MongoClient.connect(url, function (err, client) {
+      var db = client.db('purchaseOrder');
+      if (err) {
+        console.error('ERROR:', 'Unable to connect to database');
+      } else {
+        console.log(product);
+        var collection = db.collection('products');
+        collection.insertOne(product);
+        cb();
+      }
+      client.close();
+    });
+  }
 };
