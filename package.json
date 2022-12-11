@@ -14,7 +14,7 @@
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.1.0",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "frameguard": "^3.1.0",
     "helmet": "^3.20.1",
     "helmet-csp": "^2.9.0",
